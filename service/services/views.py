@@ -12,7 +12,7 @@ class SubscriptionsView(ReadOnlyModelViewSet):
     # queryset = Subscriptions.objects.all().prefetch_related('client').prefetch_related('client__user')
 
     queryset = Subscriptions.objects.all().prefetch_related(
-        'plan',
+        'plan', 'service',
         Prefetch('client', queryset=Client.objects.all().select_related('user').only('company_name',
                                                                                      'user__email'))
 
