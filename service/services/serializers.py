@@ -16,9 +16,12 @@ class SubscriptionSerializer(serializers.ModelSerializer):
     # дополнение сериализатора через MethodField. вычисления проводятся на питоне в таком случае
     price = serializers.SerializerMethodField()
 
+    # def get_price(self, instace):
+    #     return (instace.service.full_price -
+    #             instace.service.full_price * (instace.plan.discount_percent / 100))
+
     def get_price(self, instace):
-        return (instace.service.full_price -
-                instace.service.full_price * (instace.plan.discount_percent / 100))
+        return instace.price
 
 
     class Meta:
